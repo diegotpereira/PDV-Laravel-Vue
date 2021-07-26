@@ -1,7 +1,7 @@
 @extends('adminlte::master')
 
 @section('adminlte_css')
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
     @stack('css')
     @yield('css')
 @stop 
@@ -11,7 +11,8 @@
     'boxed' => 'layout-boxed',
     'fixed' => 'fixed',
     'top-nav' => 'layout-top-nav'
-] [config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? 'sidebar-collapse') : ''))
+] [config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? 'sidebar-collapse ' : ''))
+
 
 @section('body')
    <div class="wrapper">
@@ -38,7 +39,7 @@
                    <!-- /.navbar-collapse-->
             @else 
             <!--Logo-->
-            <a href="" class="logo">
+            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>A</b>LT') !!}</span>
                 <!-- logo for regular state and mobile devices -->
@@ -122,4 +123,9 @@
        <!-- /.content-wrapper -->
    </div>
    <!-- ./wrapper -->
-@stop   
+@stop
+@section('adminlte_js')
+    <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+    @stack('js')
+    @yield('js')
+@stop
