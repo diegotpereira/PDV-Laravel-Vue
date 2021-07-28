@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     Route::get('ap/estoque/', 'EstoqueController@APIListar')->name('estoque.api.listar');
     Route::post('ap/estoque/disponivel', 'EstoqueController@APIDisponivel')->name('estoque.api.disponivel');
     Route::get('ap/estoque/{id}', 'EstoqueController@APIFind')->name('estoque.api.find');
-    Route::post('ap/estoque', 'EstoqueController@saveEditar')->name('estoque.api.save');
+    Route::post('ap/estoque/', 'EstoqueController@saveEditar')->name('estoque.api.save');
     Route::post('ap/estoque/delete', 'EstoqueController@APIapagar')->name('estoque.api.delete');
     Route::post('ap/estoque/find', 'EstoqueController@APIprocurarEstoqueID')->name('estoque.api.estoqueID');
 
