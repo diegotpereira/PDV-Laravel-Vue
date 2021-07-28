@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{{ asset('css/jquery-ui.css')}}">
 @stop 
 @section('content_header')
-
+@include('admin.estoque.botoes')
 
 <h3>Novo Item</h3>
 @stop
@@ -28,7 +28,7 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="codigo">Código</label>
-                <input id="codigo" required="required" type="text" placeholder="Código" aria-describedby="basic-addon1" />
+                <input id="codigo" required="required" type="text" name="codigo" placeholder="Código" aria-describedby="basic-addon1" />
             </div>
             <div class="form-group">
                 <label for="nome">Nome do Produto</label>
@@ -64,19 +64,19 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="preco_custo">Preço de compra</label>
-                    <input id="preco_custo" required="required" name="preco_custo" onclick="this.select();" data-mask="000.000,00" data-mask-reverse="true" class="form-control" placeholder="Valor unitário" aria-describedby="basic-addon1" />
+                    <input id="preco_custo" required="required" name="preco_custo" onClick="this.select();" data-mask="000.000,00" data-mask-reverse="true" class="form-control" placeholder="Valor unitário" aria-describedby="basic-addon1" />
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="lucro">Lucro (%) </label>
-                    <input id="lucro" required="required" name="lucro" onclick="this.select();" data-mask="000%" class="form-control" placeholder="Valor unitário" aria-describedby="basic-addon1" />
+                    <input id="lucro" required="required" name="lucro" onClick="this.select();" data-mask="000%" class="form-control" placeholder="Valor unitário" aria-describedby="basic-addon1" />
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="preco">Preço de Venda</label>
-                    <input id="preco" required="required" name="lucro" onclick="this.select();" data-mask="000.000,00" data-mask-reverse="true" class="form-control" placeholder="Valor unitário" aria-describedby="basic-addon1" />
+                    <input id="preco" required="required" name="preco" onClick="this.select();" data-mask="000.000,00" data-mask-reverse="true" class="form-control" placeholder="Valor unitário" aria-describedby="basic-addon1" />
                 </div>
             </div>
         </div>

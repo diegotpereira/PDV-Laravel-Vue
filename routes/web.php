@@ -30,16 +30,23 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     // Parametros Estoque
     Route::get('/estoque/cadastrar', 'EstoqueController@index')->name('estoque.cadastrar');
     Route::post('/estoque/save', 'EstoqueController@cadastrar')->name('estoque.save');
+    Route::get('/estoque/todos', 'EstoqueController@lista')->name('estoque.todos');
 
     
     // Parametros Atributos
     Route::get('/estoque/modal', 'EstoqueController@viewModal')->name('estoque.atributos.modal');
     Route::post('/estoque/somente-add', 'EstoqueController@addAtributo')->name('estoque.atributos.add');
     Route::get('/estoque/somente/{id}', 'EstoqueController@viewAtributos')->name('estoque.atributos');
-    Route::post('ap/estoque/find', 'EstoqueController@APIprocurarEstoqueID')->name('estoque.api.estoqueID');
+    Route::get('/estoque/atributos', 'EstoqueController@viewAlterarAtributo')->name('estoque.editar.atributos');
+    Route::post('/estoque/atributos', 'EstoqueController@saveAlterarAtributos')->name('estoque.editar.atributos');
 
     // API ESTOQUE
+    Route::get('ap/estoque/', 'EstoqueController@APIListar')->name('estoque.api.listar');
+    Route::post('ap/estoque/disponivel', 'EstoqueController@APIDisponivel')->name('estoque.api.disponivel');
     Route::get('ap/estoque/{id}', 'EstoqueController@APIFind')->name('estoque.api.find');
+    Route::post('ap/estoque', 'EstoqueController@saveEditar')->name('estoque.api.save');
+    Route::post('ap/estoque/delete', 'EstoqueController@APIapagar')->name('estoque.api.delete');
+    Route::post('ap/estoque/find', 'EstoqueController@APIprocurarEstoqueID')->name('estoque.api.estoqueID');
 
 });
 Route::get('/mailable', function () { });
