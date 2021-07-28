@@ -14,8 +14,17 @@ class CreateEstoqueAuxesTable extends Migration
     public function up()
     {
         Schema::create('estoque_auxes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('codigo_estoque');
+            $table->string('cor');
+            $table->integer('estoque');
+            $table->string('tamanho');
+            $table->index(['codigo_estoque', 'cor', 'tamanho']);
+
+            $table->foreign('codigo_estoque')->references('codigo')->on('estoques')->onUpdate('cascade');
+            $table->foreign('tamanho')->references('tamanho')->on('tamanhos')->onUpdate('cascade');
+            $table->foreign('cor')->references('cor')->on('cors')->onUpdate('cascade');
         });
     }
 

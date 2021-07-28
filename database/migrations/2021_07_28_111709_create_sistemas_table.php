@@ -14,8 +14,12 @@ class CreateSistemasTable extends Migration
     public function up()
     {
         Schema::create('sistemas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('config');
+            $table->boolean('value');
+
+            $table->index(['config']);
         });
     }
 

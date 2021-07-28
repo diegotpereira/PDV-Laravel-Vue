@@ -14,8 +14,10 @@ class CreateTamanhosTable extends Migration
     public function up()
     {
         Schema::create('tamanhos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('tamanho');
+            $table->index(["tamanho"]);
         });
     }
 

@@ -14,8 +14,10 @@ class CreateMarcasTable extends Migration
     public function up()
     {
         Schema::create('marcas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('marca');
+            $table->index(["marca"]);
         });
     }
 
