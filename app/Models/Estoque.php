@@ -41,6 +41,9 @@ class Estoque extends Model
         try {
             //code...
             $estoque->save();
+
+            return true;
+            
         } catch (QueryException $e) {
             
             return false;
