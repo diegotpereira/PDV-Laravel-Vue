@@ -91,14 +91,14 @@ class EstoqueController extends Controller
                 'success' => 'false',
                 'message' => 'erro no banco de dados, codigo: '.$error_code[2]
             ]);
-        }
+        };
         
     }
 
     public function lista() {
         $estoque = DB::table('estoques')
-        ->leftjoin('estoque_auxes', 'estoque_auxes.codigo_estoque', '=', 'estoques.codigo')
-        ->addSelect('*', 'estoques.estoque as estoque_total')
+        ->leftjoin('estoque_auxes', 'estoque_auxes.codigo_estoque','=', 'estoques.codigo')
+        ->addSelect('*','estoques.estoque as estoque_total')
         ->paginate(100);
 
         return view('admin.estoque.todos',['estoque' => $estoque]);
@@ -106,10 +106,10 @@ class EstoqueController extends Controller
 
     public function viewAlterarAtributo() {
         $categoria = Categoria::all();
-        $tamanho = Tamanho::all();
         $cor = Cor::all();
-        $marca = Marca::all();
+        $tamanho = Tamanho::all();
         $unidade = Unidade::all();
+        $marca = Marca::all();
         $fornecedor = Fornecedor::all();
 
         return view('admin.editar.index', [
@@ -331,7 +331,7 @@ class EstoqueController extends Controller
     public function APIListar() {
         return DB::table('estoques')
         ->leftjoin('estoque_auxes', 'estoque_auxes.codigo_estoque', '=', 'estoques.codigo')
-        ->addSelect('*', 'estoques.estoque as estoque_total')
+        ->addSelect('*','estoques.estoque as estoque_total')
         ->orderBy('estoque_auxes.id')
         ->paginate(100);
     }
@@ -393,7 +393,7 @@ class EstoqueController extends Controller
                 'success' => 'false',
                 'message' => 'sem indice de busca!'
             ]);
-        }
+        };
         
     }
 

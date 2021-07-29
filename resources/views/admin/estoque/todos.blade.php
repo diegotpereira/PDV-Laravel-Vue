@@ -135,6 +135,7 @@
 <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables.min.js') }}"></script>
 
+
 <script type="text/javascript">
     $(function() {
         var preco = $('#preco');
@@ -169,7 +170,7 @@
             }
             custo.keyup();
         }
-
+        //Exibindo a tabela
         var table = $('#estoque-table').DataTable({
             "bPaginate": false,
             "searching": false,
@@ -246,7 +247,7 @@
             navigate(-1)
         });
 
-        function navigate(m) {
+            function navigate(m) {
             var nextp = table.ajax.json().next_page_url;
             var prevp = table.ajax.json().prev_page_url;
 
@@ -291,13 +292,38 @@
 
         function editar(data) {
             $("#id").val(data['id']);
-            $("#estoque_id").val(data['codigo']);
-            $("#nome").val(data['nome']);
-            $("#descricao").val(data['descricao']);
-            $("#estoque").val(data['estoque']);
-            $("#preco_custo").val(preco.masked(data['preco_custo']));
-            $("#lucro").val(data['lucro']);
-            $("#preco").val(preco.masked(data['preco']));
+	 		$("#estoque_id").val(data['codigo']);
+    		$("#nome").val(data['nome']);
+    		$("#descricao").val(data['descricao']);
+    		$("#estoque").val(data['estoque']);
+    		$("#preco_custo").val(preco.masked(data['preco_custo']));
+    		$("#lucro").val(data['lucro']);
+    		$("#preco").val(preco.masked(data['preco']));
+            // // $("#id").val(data['id']);
+            // $('#id').val($(this).data('id'));
+
+	 		// // $("#estoque_id").val(data['codigo']);
+            // $('#estoque_id').val($(this).data('codigo'));
+
+    		// // $("#nome").val(data['nome']);
+            // $('#nome').val($(this).data('nome'));
+
+    		// // $("#descricao").val(data['descricao']);
+            // $('#descricao').val($(this).data('descricao'));
+
+    		// // $("#estoque").val(data['estoque']);
+            // $('#estoque').val($(this).data('estoque'));
+
+    		// // $("#preco_custo").val(preco.masked(data['preco_custo']));
+            // $('#preco_custo').val($(this).data('preco_custo'));
+
+    		// // $("#lucro").val(data['lucro']);
+            // $('#lucro').val($(this).data('lucro'));
+
+    		// // $("#preco").val(preco.masked(data['preco']));
+            // $('#preco').val($(this).data('preco'));
+
+            // id = $('#id').val();
         }
 
         function apagar(data) {
