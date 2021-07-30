@@ -55,6 +55,14 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     Route::get('ap/historico/{type}/{id}', 'CaixaController@historicoAPI')->name('historico.api');
     Route::post('ap/historico/', 'CaixaController@historicoAPI')->name('historico.route');
 
+    //Venda
+    Route::get('/venda', 'VendasController@vendasView')->name('venda');
+    Route::post('/venda/', 'VendasController@Registrar')->name('venda.registrar');
+    Route::get('/venda/cupom/', 'VendasController@GerarCupom')->name('venda.cupom.route');
+
+    //Cliente
+    Route::get('ap/cliente/', 'ClientesController@APIListar')->name('cliente.api.listar');
+
 });
 Route::get('/mailable', function () { });
 
