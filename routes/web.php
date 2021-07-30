@@ -48,6 +48,13 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     Route::post('ap/estoque/delete', 'EstoqueController@APIapagar')->name('estoque.api.delete');
     Route::post('ap/estoque/find', 'EstoqueController@APIprocurarEstoqueID')->name('estoque.api.estoqueID');
 
+    //Historico
+    Route::get('/historico/', 'CaixaController@historico')->name('historico');
+    Route::post('/historico/imprimir', 'CaixaController@historicoPrint')->name('historico.print');
+    //Historico API
+    Route::get('ap/historico/{type}/{id}', 'CaixaController@historicoAPI')->name('historico.api');
+    Route::post('ap/historico/', 'CaixaController@historicoAPI')->name('historico.route');
+
 });
 Route::get('/mailable', function () { });
 
