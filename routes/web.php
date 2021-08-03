@@ -32,7 +32,6 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     Route::post('/estoque/save', 'EstoqueController@cadastrar')->name('estoque.save');
     Route::get('/estoque/todos', 'EstoqueController@lista')->name('estoque.todos');
 
-    
     // Parametros Atributos
     Route::get('/estoque/modal', 'EstoqueController@viewModal')->name('estoque.atributos.modal');
     Route::post('/estoque/somente-add', 'EstoqueController@addAtributo')->name('estoque.atributos.add');
@@ -47,20 +46,37 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     Route::post('ap/estoque/', 'EstoqueController@saveEditar')->name('estoque.api.save');
     Route::post('ap/estoque/delete', 'EstoqueController@APIapagar')->name('estoque.api.delete');
     Route::post('ap/estoque/find', 'EstoqueController@APIprocurarEstoqueID')->name('estoque.api.estoqueID');
+    
+    //API Clientes
+    Route::get('ap/cliente/', 'ClientesController@APIListar')->name('cliente.api.listar');
+    Route::get('ap/cliente/{id}', 'ClientesController@APIFind')->name('cliente.api.find');
+
+    //Caixa
+    Route::get('/caixa/abrir', 'CaixaController@iniciarCaixaView')->name('caixa.abrir');
+    Route::post('/caixa/abrir', 'CaixaController@iniciarCaixa')->name('caixa.abrir');
 
     //Historico
     Route::get('/historico/', 'CaixaController@historico')->name('historico');
     Route::post('/historico/imprimir', 'CaixaController@historicoPrint')->name('historico.print');
+
     //Historico API
     Route::get('ap/historico/{type}/{id}', 'CaixaController@historicoAPI')->name('historico.api');
     Route::post('ap/historico/', 'CaixaController@historicoAPI')->name('historico.route');
+
+    //Relatorio
+    Route::get('/relatorio', 'RelatorioController@index')->name('relatorio');
+    Route::get('/relatorio/ano/{id}', 'RelatorioController@index')->name('relatorio.ano');
+    Route::get('/relatorio/backup', 'RelatorioController@BackupIndex')->name('relatorio.backup');
+    Route::post('/relatorio/backup', 'RelatorioController@ImportBackup')->name('relatorio.backup');
+    Route::get('/debug', 'ClientesController@debug')->name('clientes.debug');
 
     //Venda
     Route::get('/venda', 'VendasController@vendasView')->name('venda');
     Route::post('/venda/', 'VendasController@Registrar')->name('venda.registrar');
     Route::get('/venda/cupom/', 'VendasController@GerarCupom')->name('venda.cupom.route');
+    Route::post('/venda/cancelar/', 'VendasController@CancelarVenda')->name('venda.cancelar');
 
-    //Cliente
+    //API Cliente
     Route::get('ap/cliente/', 'ClientesController@APIListar')->name('cliente.api.listar');
 
 });
