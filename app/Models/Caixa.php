@@ -40,4 +40,24 @@ class Caixa extends Model
             return false;
         }
     }
+
+    public static function add($int ) {
+        if (Caixa::checkOpen()) {
+            # code...
+            $caixa = Caixa::where('data', '=', date('Y-m-d'))->first();
+            $caixa->valor = $caixa->valor + $int;
+            $caixa->save();
+        } else
+        return false;
+    }
+
+    public static function getOff($int) {
+        if (Caixa::checkOpen()) {
+            # code...
+            $caixa = Caixa::where('data','=', date('Y-m-d'))->first();
+            $caixa->valor = $caixa->valor - $int;
+            $caixa->save();
+        } else 
+        return false;
+    }
 }
