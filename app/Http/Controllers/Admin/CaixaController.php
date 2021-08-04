@@ -192,7 +192,7 @@ class CaixaController extends Controller
         }
         else if ($type == 'day') {
             # code...
-            $tr = Transacoes::whereDate('data', '=',$date)->get();
+            $tr = Transacoes::whereDate('data','=',$date)->get();
             $detalhes = "";
 
             foreach($tr as $key=>$value) {
@@ -210,23 +210,21 @@ class CaixaController extends Controller
             }
             return $tr;
         }
-        else if ($type == 'range') {
-            # code...
+        else if($type == 'range'){
             $tmp = explode(',',$date);
             $date = $tmp[0];
             $to = $tmp[1];
             $detalhes = "";
             $tr = Transacoes::whereBetween('data',[$date,$to])->get();
-
-            foreach($tr as $key=>$value) {
+            foreach ($tr as $key=>$value){
                 $id = $value->id;
                 $venda = Venda::where('transacao','=', $id)->get();
-                $value->pagamento = str_replace(['DI', 'CR', 'DE'], ['Dinheiro', 'Cartão de crédito', 'Débito'], $value->pagamento);
+                $value->pagamento = str_replace(['DI','CR','DE'],['Dinheiro','Cartão de Credito','Débido'],$value->pagamento);
                 $value->desconto = $value->desconto . "%";
-                $value->total = number_format($value->total,2,',','.');
-                foreach($venda as $val) {
-                    $estoque = Estoque::where('codigo', '=',$val->codigo_estoque)->first();
-                    $detalhes = $estoque->nome.' x '.$val->quantidade. ' R$ '.number_format($val->valor_venda, 2,',','.'). ' | '.$detalhes;
+                $value->total = number_format($value->total, 2, ',', '.');
+                foreach($venda as $val){
+                    $estoque = Estoque::where('codigo','=',$val->codigo_estoque)->first();
+                    $detalhes = $estoque->nome. ' x'.$val->quantidade .' R$'.number_format($val->valor_venda, 2, ',', '.'). ' | '. $detalhes ;
                 }
                 $value->detalhes = $detalhes;
                 $detalhes = "";
@@ -234,6 +232,7 @@ class CaixaController extends Controller
             return $tr;
         }
     }
+    
     public function historicoPrint(Request $request){
         $data = explode(",",$request->rage);
         $data[0] = new \DateTime($data[0]);
