@@ -14,7 +14,9 @@ class CreateEntradaCaixasTable extends Migration
     public function up()
     {
         Schema::create('entrada_caixas', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('valor');
+            $table->string('descricao');
             $table->timestamps();
         });
     }

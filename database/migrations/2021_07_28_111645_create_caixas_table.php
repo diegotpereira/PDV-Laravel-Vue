@@ -14,8 +14,13 @@ class CreateCaixasTable extends Migration
     public function up()
     {
         Schema::create('caixas', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->decimal('inicial',10,2);
+            $table->date('data')->unique();
+            $table->decimal('valor',10,2);
             $table->timestamps();
+            $table->index(['data']);
         });
     }
 

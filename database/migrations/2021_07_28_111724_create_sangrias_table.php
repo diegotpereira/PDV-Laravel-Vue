@@ -14,7 +14,10 @@ class CreateSangriasTable extends Migration
     public function up()
     {
         Schema::create('sangrias', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->date('data');
+            $table->string('descricao');
+            $table->decimal('valor',10,2);
             $table->timestamps();
         });
     }

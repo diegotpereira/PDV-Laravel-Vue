@@ -14,8 +14,18 @@ class CreateTransacoesTable extends Migration
     public function up()
     {
         Schema::create('transacoes', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('cliente');
+            $table->date('data');
+            $table->integer('desconto');
+            $table->enum('pagamento',['DI','CR','DE']);
+            $table->integer('parcelas');
+            $table->decimal('valor_parcelas',10,2);
+            $table->decimal('total',10,2);
             $table->timestamps();
+            
+            $table->foreign('cliente')->references('CPF')->on('clientes')->onUpdate('cascade');
         });
     }
 
