@@ -54,6 +54,12 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     //Caixa
     Route::get('/caixa/abrir', 'CaixaController@iniciarCaixaView')->name('caixa.abrir');
     Route::post('/caixa/abrir', 'CaixaController@iniciarCaixa')->name('caixa.abrir');
+    Route::get('/caixa/fechar', 'CaixaController@fecharCaixaView')->name('caixa.fechar');
+    Route::post('/caixa/fechar', 'CaixaController@fecharCaixa')->name('caixa.fechar');
+    Route::get('/caixa/sangria', 'CaixaController@sangriaView')->name('sangria');
+    Route::post('/caixa/sangria', 'CaixaController@sangriaPost')->name('sangria');
+    Route::get('/caixa/adicionar', 'CaixaController@addCaixaView')->name('caixa.add');
+    Route::post('/caixa/adicionar', 'CaixaController@addCaixa')->name('caixa.add');
 
     //Historico
     Route::get('/historico/', 'CaixaController@historico')->name('historico');
@@ -74,6 +80,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     Route::get('/venda', 'VendasController@vendasView')->name('venda');
     Route::post('/venda/', 'VendasController@Registrar')->name('venda.registrar');
     Route::get('/venda/cupom/', 'VendasController@GerarCupom')->name('venda.cupom.route');
+    Route::get('/venda/cupom/{id}', 'VendasController@GerarCupom')->name('venda.cupom');
     Route::post('/venda/cancelar/', 'VendasController@CancelarVenda')->name('venda.cancelar');
 
     //API Cliente
