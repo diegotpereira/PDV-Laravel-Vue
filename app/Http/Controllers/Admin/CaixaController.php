@@ -222,6 +222,7 @@ class CaixaController extends Controller
                 $value->pagamento = str_replace(['DI','CR','DE'],['Dinheiro','Cartão de Credito','Débido'],$value->pagamento);
                 $value->desconto = $value->desconto . "%";
                 $value->total = number_format($value->total, 2, ',', '.');
+                
                 foreach($venda as $val){
                     $estoque = Estoque::where('codigo','=',$val->codigo_estoque)->first();
                     $detalhes = $estoque->nome. ' x'.$val->quantidade .' R$'.number_format($val->valor_venda, 2, ',', '.'). ' | '. $detalhes ;
